@@ -17,7 +17,7 @@
           "category": "Contributed",
           "url": "https://github.com/ccardell-sonicu/RAK-STM32-RUI/releases/tag/v4.0.4_239",
           "archiveFileName": "RAK-STM32-RUI-4.0.4_239.tar.gz",
-          "checksum": "SHA-256:a3930abd29e5584aa575029edce10f85adab4df035a7b8dae427b48203e2d421",
+          "checksum": "SHA-256:61a64ce2cb4a26a0ad9e293efd8409158f69332de94ed4dc9c7c3bf14d7c38e2",
           "size": "119166",
           "boards": [
             {
