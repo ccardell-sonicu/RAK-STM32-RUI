@@ -1,7 +1,7 @@
 {
   "packages": [
     {
-      "name": "rak_rui",
+      "name": "sonicu_rak_rui",
       "maintainer": "Sonicu",
       "websiteURL": "https://sonicu.com",
       "email": "ccardell@sonicu.com",
@@ -35,17 +35,17 @@
           ],
           "toolsDependencies": [
             {
-              "packager": "rak_rui",
+              "packager": "sonicu_rak_rui",
               "name": "arm-none-eabi-gcc",
               "version": "9-2019q4"
             },
             {
-              "packager": "rak_rui",
+              "packager": "sonicu_rak_rui",
               "name": "uploader_ymodem",
               "version": "1.0.0"
             },
             {
-              "packager": "rak_rui",
+              "packager": "sonicu_rak_rui",
               "name": "buildtime",
               "version": "v0.0.0"
             }
