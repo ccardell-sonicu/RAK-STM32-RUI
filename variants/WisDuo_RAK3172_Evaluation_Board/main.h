@@ -27,6 +27,8 @@
 extern "C" {
 #endif
 
+#define SONICU_CUSTOM_BSP 1
+
 /* Includes ------------------------------------------------------------------*/
 #include "stm32wlxx_hal.h"
 
