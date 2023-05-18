@@ -36,6 +36,7 @@ int32_t uhal_rtc_init (RtcID_E timer_id, rtc_handler handler, uint32_t hz) {
     */
     hrtc.Instance = RTC;
     hrtc.Init.AsynchPrediv = RTC_PREDIV_A;
+    hrtc.Init.SynchPrediv = RTC_PREDIV_S;
     hrtc.Init.OutPut = RTC_OUTPUT_DISABLE;
     hrtc.Init.OutPutRemap = RTC_OUTPUT_REMAP_NONE;
     hrtc.Init.OutPutPolarity = RTC_OUTPUT_POLARITY_HIGH;
