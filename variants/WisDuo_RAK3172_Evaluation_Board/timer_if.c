@@ -185,6 +185,10 @@ UTIL_TIMER_Status_t TIMER_IF_Init(void)
   UTIL_TIMER_Status_t ret = UTIL_TIMER_OK;
   /* USER CODE BEGIN TIMER_IF_Init */
 
+  if((RTC->ICSR & RTC_ICSR_INITS) == RTC_ICSR_INITS) {
+    RTC_Initialized = true;
+  }
+
   /* USER CODE END TIMER_IF_Init */
   if (RTC_Initialized == false)
   {

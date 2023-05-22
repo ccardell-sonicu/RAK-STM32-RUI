@@ -315,6 +315,7 @@ void rui_init(void)
 {
     uint32_t baudrate;
     SCB->VTOR = FLASH_BASE | 0x6000;
+    RCC->APB1ENR1 = 0x400; // enable the RTC peripheral clock
 
     HAL_Init();
     SystemClock_Config();
