@@ -42,7 +42,7 @@ int32_t uhal_rtc_init (RtcID_E timer_id, rtc_handler handler, uint32_t hz) {
     hrtc.Init.OutPutPolarity = RTC_OUTPUT_POLARITY_HIGH;
     hrtc.Init.OutPutType = RTC_OUTPUT_TYPE_OPENDRAIN;
     hrtc.Init.OutPutPullUp = RTC_OUTPUT_PULLUP_NONE;
-    hrtc.Init.BinMode = RTC_BINARY_ONLY;
+    hrtc.Init.BinMode = RTC_BINARY_MIX;
     if (HAL_RTC_Init(&hrtc) != HAL_OK)
     {
       Error_Handler();
