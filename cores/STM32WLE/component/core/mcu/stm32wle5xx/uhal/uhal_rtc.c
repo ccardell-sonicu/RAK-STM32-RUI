@@ -51,7 +51,7 @@ int32_t uhal_rtc_init (RtcID_E timer_id, rtc_handler handler, uint32_t hz) {
     hrtc.Init.BinMode = RTC_BINARY_ONLY;
     // hrtc.Init.BinMode = RTC_BINARY_MIX;
     // hrtc.Init.HourFormat = RTC_HOURFORMAT_24; /*!< Specifies the RTC Hour Format. This parameter can be a value of @ref RTC_Hour_Formats */
-    hrtc.Init.BinMixBcdU = RTC_BINARY_MIX_BCDU_2; /*!< Specifies the BCD calendar update if and only if BinMode = RTC_BINARY_MIX. This parameter can be a value of @ref RTCEx_Binary_mix_BCDU */
+    // hrtc.Init.BinMixBcdU = RTC_BINARY_MIX_BCDU_2; /*!< Specifies the BCD calendar update if and only if BinMode = RTC_BINARY_MIX. This parameter can be a value of @ref RTCEx_Binary_mix_BCDU */
 
     if((RTC->ICSR & RTC_ICSR_INITS) != RTC_ICSR_INITS) {
         if (HAL_RTC_Init(&hrtc) != HAL_OK)
