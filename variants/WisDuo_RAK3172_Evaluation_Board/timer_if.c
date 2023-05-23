@@ -185,16 +185,21 @@ UTIL_TIMER_Status_t TIMER_IF_Init(void)
   UTIL_TIMER_Status_t ret = UTIL_TIMER_OK;
   /* USER CODE BEGIN TIMER_IF_Init */
 
-  if((RTC->ICSR & RTC_ICSR_INITS) == RTC_ICSR_INITS) {
-    RTC_Initialized = true;
-  }
+  // if((RTC->ICSR & RTC_ICSR_INITS) == RTC_ICSR_INITS) {
+  //   RTC_Initialized = true;
+  // }
 
   /* USER CODE END TIMER_IF_Init */
   if (RTC_Initialized == false)
   {
     hrtc.IsEnabled.RtcFeatures = UINT32_MAX;
-    /*Init RTC*/
+
+    // if((RTC->ICSR & RTC_ICSR_INITS) != RTC_ICSR_INITS) {
+    //   /*Init RTC*/
+    //   uhal_rtc_init(UDRV_RTC_0, NULL, 0);
+    // }
     uhal_rtc_init(UDRV_RTC_0, NULL, 0);
+    
     /*Stop Timer */
     TIMER_IF_StopTimer();
     /** DeActivate the Alarm A enabled by STM32CubeMX during MX_RTC_Init() */

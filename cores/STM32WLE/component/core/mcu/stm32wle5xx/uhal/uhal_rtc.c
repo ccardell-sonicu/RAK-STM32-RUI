@@ -26,12 +26,18 @@ uint32_t uhal_rtc_sleep_mode_ms2tick(uint32_t ms) {
 }
 
 
-
+RTC_TypeDef my_copy_of_rtc_1;
+RTC_TypeDef my_copy_of_rtc_2;
 int32_t uhal_rtc_init (RtcID_E timer_id, rtc_handler handler, uint32_t hz) {
 
     RTC_AlarmTypeDef sAlarm = {0};
     RTC_TimeTypeDef sTime;
   
+    memcpy(&my_copy_of_rtc_1, RTC, sizeof(RTC_TypeDef));
+
+    // volatile uint32_t hold = 1;
+    // while(hold){}
+
     /** Initialize RTC Only
     */
     hrtc.Instance = RTC;
@@ -43,9 +49,17 @@ int32_t uhal_rtc_init (RtcID_E timer_id, rtc_handler handler, uint32_t hz) {
     hrtc.Init.OutPutType = RTC_OUTPUT_TYPE_OPENDRAIN;
     hrtc.Init.OutPutPullUp = RTC_OUTPUT_PULLUP_NONE;
     hrtc.Init.BinMode = RTC_BINARY_ONLY;
-    if (HAL_RTC_Init(&hrtc) != HAL_OK)
-    {
-      Error_Handler();
+    // hrtc.Init.HourFormat = RTC_HOURFORMAT_24; /*!< Specifies the RTC Hour Format. This parameter can be a value of @ref RTC_Hour_Formats */
+    // hrtc.Init.BinMixBcdU = RTC_BINARY_MIX_BCDU_0; /*!< Specifies the BCD calendar update if and only if BinMode = RTC_BINARY_MIX. This parameter can be a value of @ref RTCEx_Binary_mix_BCDU */
+
+    if((RTC->ICSR & RTC_ICSR_INITS) != RTC_ICSR_INITS) {
+        if (HAL_RTC_Init(&hrtc) != HAL_OK)
+        {
+            Error_Handler();
+        }
+    } else {
+        hrtc.Lock = HAL_UNLOCKED;
+        hrtc.State = HAL_RTC_STATE_READY;
     }
   
     /** Initialize RTC and set the Time and Date
@@ -65,6 +79,7 @@ int32_t uhal_rtc_init (RtcID_E timer_id, rtc_handler handler, uint32_t hz) {
     {
       Error_Handler();
     }
+    memcpy(&my_copy_of_rtc_2, RTC, sizeof(RTC_TypeDef));
     return 0;
 }
 
