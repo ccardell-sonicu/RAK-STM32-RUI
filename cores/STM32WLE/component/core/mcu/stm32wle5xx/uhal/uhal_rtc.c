@@ -48,9 +48,9 @@ int32_t uhal_rtc_init (RtcID_E timer_id, rtc_handler handler, uint32_t hz) {
     hrtc.Init.OutPutPolarity = RTC_OUTPUT_POLARITY_HIGH;
     hrtc.Init.OutPutType = RTC_OUTPUT_TYPE_OPENDRAIN;
     hrtc.Init.OutPutPullUp = RTC_OUTPUT_PULLUP_NONE;
-    hrtc.Init.BinMode = RTC_BINARY_ONLY;
-    // hrtc.Init.BinMode = RTC_BINARY_MIX;
-    // hrtc.Init.HourFormat = RTC_HOURFORMAT_24; /*!< Specifies the RTC Hour Format. This parameter can be a value of @ref RTC_Hour_Formats */
+    // hrtc.Init.BinMode = RTC_BINARY_ONLY;
+    hrtc.Init.BinMode = RTC_BINARY_MIX;
+    hrtc.Init.HourFormat = RTC_HOURFORMAT_24; /*!< Specifies the RTC Hour Format. This parameter can be a value of @ref RTC_Hour_Formats */
     // hrtc.Init.BinMixBcdU = RTC_BINARY_MIX_BCDU_2; /*!< Specifies the BCD calendar update if and only if BinMode = RTC_BINARY_MIX. This parameter can be a value of @ref RTCEx_Binary_mix_BCDU */
 
     if((RTC->ICSR & RTC_ICSR_INITS) != RTC_ICSR_INITS) {
@@ -73,8 +73,10 @@ int32_t uhal_rtc_init (RtcID_E timer_id, rtc_handler handler, uint32_t hz) {
     */
     sAlarm.BinaryAutoClr = RTC_ALARMSUBSECONDBIN_AUTOCLR_NO;
     sAlarm.AlarmTime.SubSeconds = 0x0; 
-    sAlarm.AlarmMask = RTC_ALARMMASK_NONE;
-    sAlarm.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_NONE;
+    sAlarm.AlarmMask = RTC_ALARMMASK_ALL;
+    sAlarm.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_SS14_8; //RTC_ALARMSUBSECONDMASK_NONE;
+    // sAlarm.AlarmMask = RTC_ALARMMASK_NONE;
+    // sAlarm.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_NONE;
     sAlarm.Alarm = RTC_ALARM_A;
     if (HAL_RTC_SetAlarm_IT(&hrtc, &sAlarm, 0) != HAL_OK)
     {
